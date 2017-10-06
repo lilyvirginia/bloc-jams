@@ -59,10 +59,8 @@ html {
         /* #5 */
       .links-container .navbar-link:hover {
           color: rgb(233,50,117);
-          background-color: rgb(105, 105, 105);
       }
       .links-container .navbar-link:active {
-          color: rgb(233,50,117);
           background-color: rgb(255, 255, 255);
       }
 
