@@ -13,7 +13,6 @@
          { title: 'Magenta', duration: '2:15'}
      ]
  };
-
  // Another Example Album
  var albumMarconi = {
      title: 'The Telephone',
@@ -29,6 +28,22 @@
          { title: 'Wrong phone number', duration: '2:15'}
      ]
  };
+ // Another Example Album
+ var albumBadu = {
+     title: 'New Amerykah',
+     artist: 'Erykah Badu',
+     label: 'Universal Motown',
+     year: '2008',
+     albumArtUrl: 'assets/images/album_covers/10.png',
+     songs: [
+         { title: 'Ameryahn Promise', duration: '4:16' },
+         { title: 'The Healer', duration: '3:59' },
+         { title: 'Me', duration: '5:36'},
+         { title: 'My People', duration: '3:25' },
+         { title: 'Soldier', duration: '5:04'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -37,17 +52,17 @@
       + '  <td class="song-item-duration">' + songLength + '</td>'
       + '</tr>'
       ;
-
      return template;
  };
- var setCurrentAlbum = function(album) {
-    // #1
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
+ // #1
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+ var setCurrentAlbum = function(album) {
     // #2
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -65,4 +80,13 @@
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
-};
+    var albums = [albumPicasso, albumMarconi, albumBadu];
+    var index = 1;
+    albumImage.addEventListener("click", function(event) {
+       setCurrentAlbum(albums[index]);
+       index++;
+       if (index == albums.length) {
+         index = 0;
+       }
+     });
+  };
